@@ -289,6 +289,13 @@ function formatValidation(){
 		//alert("Number Pattern does not match");
 		//return false;
 	//}
+
+	const driverNamePattern = new RegExp("[a-zA-Z]+[ ][a-zA-Z]+");
+	var namePatternTrue = driverNamePattern.test(document.getElementById('dri-name').value);
+	if(!namePatternTrue){
+		alert("Driver Name Pattern does not match");
+		return false;
+	}	
 	
 	var driverNumber = document.getElementById('dri-num').value;
 	//var number = "/^[0-9]+$/";
@@ -304,6 +311,8 @@ function formatValidation(){
 		alert("Number pattern does not match");
 		return false;
 	}
+	
+	
 	
 	const licenseNumberPattern = new RegExp("^(([A-Z]{2}[0-9]{2})( )|([A-Z]{2}-[0-9]{2}))((19|20)[0-9][0-9])[0-9]{7}$");
 	var licenseNumTrue = licenseNumberPattern.test(document.getElementById('lic-num').value);
