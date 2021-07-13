@@ -248,7 +248,7 @@ var savingNewRecord = true;
 
 function validateDriverDetails(){
 	
-	if(document.getElementById('dri-name').value == undefined || document.getElementById('dri-name').value ==""){
+	if(document.getElementById('dri-name').value == undefined || document.getElementById('dri-name').value.trim() ==""){
 		
 		alert("Driver Name field cannot be empty");
 		return false;
@@ -290,12 +290,20 @@ function formatValidation(){
 		//return false;
 	//}
 
-	const driverNamePattern = new RegExp("[a-zA-Z]+[ ][a-zA-Z]+");
-	var namePatternTrue = driverNamePattern.test(document.getElementById('dri-name').value);
-	if(!namePatternTrue){
-		alert("Driver Name Pattern does not match");
-		return false;
-	}	
+	//const driverNamePattern = new RegExp("([a-z]|[A-Z])|[ ]+([a-z]|[A-Z])+");
+	//var namePatternTrue = driverNamePattern.test(document.getElementById('dri-name').value);
+	//const namePattern1 = new RegExp("[\S]+(\s[\S]+)*");
+	//var space = namePattern1.test(document.getElementById('dri-name').value);
+	//if(!namePatternTrue){
+		//alert("Driver Name Pattern does not match");
+		//return false;
+	//}	
+	//if(!space){
+		//alert("Driver Name Pattern does not match");
+		//return false;
+	//}	
+	
+	
 	
 	var driverNumber = document.getElementById('dri-num').value;
 	//var number = "/^[0-9]+$/";
@@ -336,7 +344,7 @@ function formatValidation(){
 
 function saveDriverDetails(){
 	
-	var driverName = document.getElementById('dri-name').value;
+	var driverName = document.getElementById('dri-name').value.trim();
 	var driverNumber = document.getElementById('dri-num').value;
 	var licenseNumber = document.getElementById('lic-num').value;
 	var expiryDate = document.getElementById('lic-exp-date').value;
@@ -461,8 +469,8 @@ function updateDriverInfoProcessResponse(){
 		var response = this.reponseText;
 		
 		alert("Driver Details updated successfully");
-		
-		funClear();
+		location.reload();
+		//funClear();
 	}
 	
 	if(xhrDriverDetails.readyState == 4 && xhrSaveDriverDetails.status == 417){
@@ -512,6 +520,7 @@ function deleteDriverInfoProcessResponse(){
 		delrow.remove();
 		
 		alert("Driver Details deleted successfully");
+		location.reload();
 		
 	}
 }
