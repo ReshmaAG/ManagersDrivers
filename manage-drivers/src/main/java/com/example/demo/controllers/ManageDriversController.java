@@ -21,6 +21,7 @@ import com.example.demo.bl.ManageDriversBL;
 import com.example.demo.dl.ManageDriversDL;
 import com.example.demo.entity.DriverInfo;
 import com.example.demo.repository.ManageDriversRepository;
+import com.example.demo.status.ManageDriversStatus;
 
 @RestController
 @RequestMapping(path = "/manage/drivers")
@@ -72,12 +73,12 @@ public class ManageDriversController {
 		
 		if(entitynumber.isPresent() && entitynumber.get().getIsDeleted() == 0) {
 			
-			return new ResponseEntity<>(null, HttpStatus.ALREADY_REPORTED);
+			return  ResponseEntity.status(ManageDriversStatus.DRIVERNUMBEREXIST).body(null);
 		}
 		
 		else if(entitylic.isPresent() && entitylic.get().getIsDeleted() == 0) {
 			
-			return new ResponseEntity<>(null, HttpStatus.FOUND);
+			return ResponseEntity.status(ManageDriversStatus.LICENSENUMBEREXIST).body(null);
 					
 		}
 //		else if(entitynumber.isPresent() && entitylic.isPresent()) {
@@ -121,13 +122,13 @@ public class ManageDriversController {
 		
 		if(entitynumber.isPresent() && !(entitynumber.get().getDriverId() == updateDriverDetails.getDriverId()) && entitynumber.get().getIsDeleted() == 0) {
 			
-			return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
+			return ResponseEntity.status(ManageDriversStatus.DRIVERNUMBEREXIST).body(null);
 			
 		}
 		
 		else if(entitylic.isPresent() && !(entitylic.get().getDriverId() == updateDriverDetails.getDriverId()) && entitylic.get().getIsDeleted() == 0) {
 			
-			return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+			return ResponseEntity.status(ManageDriversStatus.LICENSENUMBEREXIST).body(null);
 
 		}
 		
@@ -136,6 +137,19 @@ public class ManageDriversController {
 				return ResponseEntity.status(HttpStatus.CREATED).body(updateDriverInfo);
 		}
 	}
+	
+	
+	//This method is used to delete the driver details//
+    @PutMapping(path = "/deletedriver/{driverId}")
+    public ResponseEntity<DriverInfo> deleteDriver(@PathVariable("driverId") long driverId){
+               
+        DriverInfo info = this.manageDriversBL.deleteDriverDetails(driverId);
+       
+        return ResponseEntity.status(HttpStatus.OK).body(info);
+       
+    }
+    //End of delete method//
+
 }
 		
 	

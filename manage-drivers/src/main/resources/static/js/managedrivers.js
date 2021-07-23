@@ -393,29 +393,23 @@ function saveDriverInfoProcessResponse(){
 		
 		var response = this.responseText;
 		alert("Driver Details saved successfully");
-		funClear();
-		
+		//funClear();
+		location.reload();
 	}
 	
-	if(xhrSaveDriverDetails.readyState == 4 && xhrSaveDriverDetails.status == 208){
+	if(xhrSaveDriverDetails.readyState == 4 && xhrSaveDriverDetails.status == 590){
 		
 		alert("Driver phone number already present");
 		return false;
 		
 	}
-	if(xhrSaveDriverDetails.readyState == 4 && xhrSaveDriverDetails.status == 302){
+	if(xhrSaveDriverDetails.readyState == 4 && xhrSaveDriverDetails.status == 591){
 		
 		alert("Driver license number already present");
 		return false;
 		
 	}
 	
-	if(xhrSaveDriverDetails.readyState == 4 && xhrSaveDriverDetails.status == 409){
-		
-		alert("Driver number and license number already present");
-		return false;
-		
-	}
 	
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -473,13 +467,13 @@ function updateDriverInfoProcessResponse(){
 		//funClear();
 	}
 	
-	if(xhrDriverDetails.readyState == 4 && xhrSaveDriverDetails.status == 417){
+	if(xhrDriverDetails.readyState == 4 && xhrSaveDriverDetails.status == 590){
 		
 		alert("Driver Number already exist");
 		return false;
 	}
 	
-	if(xhrSaveDriverDetails.readyState == 4 && xhrSaveDriverDetails.status == 403){
+	if(xhrSaveDriverDetails.readyState == 4 && xhrSaveDriverDetails.status == 591){
 		
 		alert("License number already exist");
 		return false;
