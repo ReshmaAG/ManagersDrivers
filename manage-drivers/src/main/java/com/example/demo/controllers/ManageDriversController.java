@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -39,220 +40,24 @@ public class ManageDriversController {
 	@GetMapping(path = "/list")
 	public ResponseEntity<List<DriverInfo>> getAllDrivers() {
 		
-		List<DriverInfo> driverList = this.manageDriversBL.findByIsDeleted('0');
+		List<DriverInfo> driverList = this.manageDriversBL.findByIsDeleted(0);
 		return ResponseEntity.status(HttpStatus.OK).body(driverList);
 
 	}
 	//End of get all driver details method//
 	
-	//This method is used to add a driver to the list//
-//	@PostMapping(path = "/add/newdriver")
-//	public ResponseEntity<DriverInfo> addDriverDetails(@RequestBody DriverInfo driverInfo){
-//		
-//		DriverInfo reqDriver = driverInfo;
-//		reqDriver.setIsDeleted('0');
-//		
-//		DriverInfo createdBy = driverInfo;
-//		createdBy.setCreatedBy("Admin");
-//		
-//		DriverInfo createdDate = driverInfo;
-//		createdDate.setCreatedDate(LocalDate.now());
-//		
-//		driverInfo.setDriverId(repo.count()+1);
-//		long driverId = driverInfo.getDriverId();
-//		Optional<DriverInfo> entity = repo.findById(driverId);
-//		DriverInfo saveDriverInfo = null;
-//		Long number = driverInfo.getDriverNumber();
-//		Optional<DriverInfo> entitynum = repo.findByDriverNumber(number);
-//		
-//		String license = driverInfo.getLicenseNumber();
-//		Optional<DriverInfo> entitylic = repo.findByLicenseNumber(license);
-		
-//		if(entity.isPresent()) {
-//			
-//			boolean isNumberAvailable = manageDriversBL.isNumberAvailable(driverInfo);
-//			
-//			boolean isLicenseAvailable = manageDriversBL.isLicenseAvailable(driverInfo);
-//			
-//			if(isNumberAvailable) {
-//				
-//				//saveDriverInfo = this.manageDriversDL.saveDriverDetails(driverInfo);
-//				
-//				return new ResponseEntity<>(null,HttpStatus.FOUND);
-//			}
-//				
-//				else if(isLicenseAvailable) {
-//					
-//					//saveDriverInfo = this.manageDriversDL.saveDriverDetails(driverInfo);
-//					
-//					return new ResponseEntity<>(null,HttpStatus.CONFLICT);
-//					
-//				}
-//				
-//				else if(isNumberAvailable && isLicenseAvailable) {
-//					
-//					return new ResponseEntity<>(null,HttpStatus.ALREADY_REPORTED);
-//		
-//			}
-//					
-//		}	
-//
-//		else {
-//	
-//			
-//			saveDriverInfo = this.manageDriversBL.addDriverDetails(driverInfo);
-//
-//			return ResponseEntity.status(HttpStatus.CREATED).body(saveDriverInfo);
-//		}	
-//		
-//		
-//		}
-			//return new ResponseEntity<>(null,HttpStatus.ALREADY_REPORTED);
-			//throw new NoSuchElementException("Driver with this number or license number already exist");
-			
-//		else if(entitylic.isPresent()) {
-//			
-//			return new ResponseEntity<>(null,HttpStatus.FOUND);
-//			//throw new NoSuchElementException("Driver with this number or license number already exist");
-//			
-//		}
-//		else if(entitynum.isPresent() && entitylic.isPresent()) {
-//			return new ResponseEntity<>(null,HttpStatus.CONFLICT);
-//		}
-//		
-//		else {
-//		
-//	
-//			
-//			saveDriverInfo = this.manageDriversBL.addDriverDetails(driverInfo);
-//
-//			return ResponseEntity.status(HttpStatus.CREATED).body(saveDriverInfo);
-//			
-//		}
-//		}
-			
-//			boolean isNumberAvailable = manageDriversBL.isNumberAvailable(driverInfo);
-//			
-//			boolean isLicenseAvailable = manageDriversBL.isLicenseAvailable(driverInfo);
-//			
-//			if(isNumberAvailable) {
-//				
-//				saveDriverInfo = this.manageDriversDL.saveDriverDetails(driverInfo);
-//				
-//				if(isLicenseAvailable) {
-//					
-//					saveDriverInfo = this.manageDriversDL.saveDriverDetails(driverInfo);
-//					
-//				}
-//				
-//				else {
-//					
-//					throw new NoSuchElementException("License Number already exits");
-//					
-//				}
-//				
-//			}
-//			else {
-//				
-//				throw new NoSuchElementException("Driver Number already exist");
-//				
-//			}
-						
-		
-		
-		
-	
-	//End of adding the driver to the list method//
-	
-	//This method is used to update the driver details in the list//
-//	@PutMapping(path = "/edit")
-//	public ResponseEntity<DriverInfo> editDriverDetails(@RequestBody DriverInfo updateDriverDetails){
-//		
-//		DriverInfo isDeleted = updateDriverDetails;
-//		isDeleted.setIsDeleted('0');
-//		
-//		DriverInfo modifiedBy = updateDriverDetails;
-//		modifiedBy.setModifiedBy("Admin");
-//		
-//		DriverInfo modifiedDate = updateDriverDetails;
-//		modifiedDate.setModifiedDate(LocalDate.now());
-//		
-//		Long id = updateDriverDetails.getDriverId();
-//		
-//		Optional<DriverInfo> entity = repo.findById(id);
-//		DriverInfo saveDriverInfo = null;
-//		
-//		//if(entity.isPresent()) {
-//			
-//			//throw new NoSuchElementException("Driver with this number already exist");
-//			
-//		//}
-//		
-//		//else {
-//			
-//			saveDriverInfo = this.manageDriversBL.addDriverDetails(updateDriverDetails);
-//
-//			boolean isNumberAvailable = manageDriversBL.isNumberAvailable(updateDriverDetails);
-//			
-//			boolean isLicenseAvailable = manageDriversBL.isLicenseAvailable(updateDriverDetails);
-//			
-//			if(isNumberAvailable) {
-//				
-//				saveDriverInfo = this.manageDriversDL.saveDriverDetails(updateDriverDetails);
-//				
-//				if(isLicenseAvailable) {
-//					
-//					saveDriverInfo = this.manageDriversDL.saveDriverDetails(updateDriverDetails);
-//					
-//				}
-//				
-//				else {
-//					
-//					throw new NoSuchElementException("License Number already exits");
-//					
-//				}
-//				
-//			}
-//			else {
-//				
-//				throw new NoSuchElementException("Driver Number already exist");
-//				
-//			}
-//						
-//			
-//		//}
-//		
-//		return ResponseEntity.status(HttpStatus.CREATED).body(saveDriverInfo);
-//		
-//	}
-	
-	//This method is used to delete the driver details//
-	@PutMapping(path = "/deletedriver/{driverId}")
-	public ResponseEntity<DriverInfo> deleteDriver(@PathVariable("driverId") Long driverId){
-				
-		DriverInfo info = this.manageDriversBL.deleteDriverDetails(driverId);
-		
-		return ResponseEntity.status(HttpStatus.OK).body(info);
-		
-	}
-	//End of delete method//
-	
-//	@GetMapping("/count")
-//	public long getTotalCount() {
-//		return manageDriversBL.getRecordCount();
-//	}
-	
+
 	@PostMapping(path = "/add/newdriver")
 	public ResponseEntity<DriverInfo> addDriverInfo(@RequestBody DriverInfo driverInfo){
 		
 		DriverInfo reqDriver = driverInfo;
-		reqDriver.setIsDeleted('0');
+		reqDriver.setIsDeleted(0);
 		
 		DriverInfo createdBy = driverInfo;
 		createdBy.setCreatedBy("Admin");
 		
 		DriverInfo createdDate = driverInfo;
-		createdDate.setCreatedDate(LocalDate.now());
+		createdDate.setCreatedDate(LocalDateTime.now());
 		
 		driverInfo.setDriverId(repo.count()+1);
 		Long driverId = driverInfo.getDriverId();
@@ -265,12 +70,12 @@ public class ManageDriversController {
 		
 		DriverInfo saveDriverInfo = null;
 		
-		if(entitynumber.isPresent() && entitynumber.get().getIsDeleted() == '0') {
+		if(entitynumber.isPresent() && entitynumber.get().getIsDeleted() == 0) {
 			
 			return new ResponseEntity<>(null, HttpStatus.ALREADY_REPORTED);
 		}
 		
-		else if(entitylic.isPresent() && entitylic.get().getIsDeleted() == '0') {
+		else if(entitylic.isPresent() && entitylic.get().getIsDeleted() == 0) {
 			
 			return new ResponseEntity<>(null, HttpStatus.FOUND);
 					
@@ -294,13 +99,13 @@ public class ManageDriversController {
 		
 		
 		DriverInfo isDeleted = updateDriverDetails;
-		isDeleted.setIsDeleted('0');
+		isDeleted.setIsDeleted(0);
 		
 		DriverInfo modifiedBy = updateDriverDetails;
 		modifiedBy.setModifiedBy("Admin");
 		
 		DriverInfo modifiedDate = updateDriverDetails;
-		modifiedDate.setModifiedDate(LocalDate.now());
+		modifiedDate.setModifiedDate(LocalDateTime.now());
 		
 		Long id = updateDriverDetails.getDriverId();
 		
@@ -314,13 +119,13 @@ public class ManageDriversController {
 		DriverInfo updateDriverInfo = null;
 		
 		
-		if(entitynumber.isPresent() && !(entitynumber.get().getDriverId() == updateDriverDetails.getDriverId()) && entitynumber.get().getIsDeleted() == '0') {
+		if(entitynumber.isPresent() && !(entitynumber.get().getDriverId() == updateDriverDetails.getDriverId()) && entitynumber.get().getIsDeleted() == 0) {
 			
 			return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
 			
 		}
 		
-		else if(entitylic.isPresent() && !(entitylic.get().getDriverId() == updateDriverDetails.getDriverId()) && entitylic.get().getIsDeleted() == '0') {
+		else if(entitylic.isPresent() && !(entitylic.get().getDriverId() == updateDriverDetails.getDriverId()) && entitylic.get().getIsDeleted() == 0) {
 			
 			return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
 

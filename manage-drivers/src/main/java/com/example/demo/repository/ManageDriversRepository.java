@@ -11,7 +11,7 @@ public interface ManageDriversRepository extends MongoRepository<DriverInfo, Lon
 
 	Optional<DriverInfo> findById(Long id);
 
-	List<DriverInfo> findByIsDeleted(char c);
+	List<DriverInfo> findByIsDeleted(int i);
 
 	Optional<DriverInfo> findByDriverNumber(long number);
 

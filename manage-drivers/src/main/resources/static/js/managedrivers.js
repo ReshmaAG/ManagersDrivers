@@ -56,8 +56,8 @@ function driverInfoProcessResponse(){
         	divObj.innerText = arr[i].driverName;
         	divObj1.innerText = arr[i].driverNumber;
         	divObj2.innerText = arr[i].licenseNumber;
-        	divObj3.innerText = formatDate(arr[i].expiryDate,1);
-        	divObj4.innerHTML ="<a href='#' title='Edit' class='actions-image'><img src='images/edit.svg' alt='edit-icon' onclick='editData(this)'/></a><a href='#' title='Delete' class='actions2-image'><img src='images/delete.svg' onclick='deleteData(this)' alt='delete-icon' data-toggle='modal' data-target='#manage-pop' /></a>";;
+        	divObj3.innerText = formatDate(arr[i].licenseExpiryDate,1);
+        	divObj4.innerHTML ="<a href='#' title='Edit' class='actions-image'><img src='images/edit.svg' alt='edit-icon' onclick='editData(this)'/></a><a href='#' title='Delete' class='actions2-image'><img src='images/delete.svg' onclick='deleteData(this)' alt='delete-icon' data-toggle='modal' data-target='#manage-pop' /></a>";
         	divObj5.innerText = arr[i].driverId;
         	
         	divObj5.style.display="none";
@@ -347,7 +347,7 @@ function saveDriverDetails(){
 	var driverName = document.getElementById('dri-name').value.trim();
 	var driverNumber = document.getElementById('dri-num').value;
 	var licenseNumber = document.getElementById('lic-num').value;
-	var expiryDate = document.getElementById('lic-exp-date').value;
+	var licenseExpiryDate = document.getElementById('lic-exp-date').value;
 	
 	if(savingNewRecord){
 		
@@ -355,7 +355,7 @@ function saveDriverDetails(){
 
 		
 		var data = {"driverName":driverName,"driverNumber":driverNumber,
-				"licenseNumber":licenseNumber,"expiryDate":expiryDate};
+				"licenseNumber":licenseNumber,"licenseExpiryDate":licenseExpiryDate};
 					
 	}
 	
@@ -364,7 +364,7 @@ function saveDriverDetails(){
 		xhrSaveDriverDetails.open("PUT","http://localhost:8080/manage/drivers/edit",true);
 		
 		var data = {"driverId":driverId,"driverName":driverName,"driverNumber":driverNumber,
-				"licenseNumber":licenseNumber,"expiryDate":expiryDate};
+				"licenseNumber":licenseNumber,"licenseExpiryDate":licenseExpiryDate};
 				
 	}
 	

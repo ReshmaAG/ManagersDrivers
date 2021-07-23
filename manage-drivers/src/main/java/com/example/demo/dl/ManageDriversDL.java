@@ -1,6 +1,7 @@
 package com.example.demo.dl;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,7 +70,7 @@ public class ManageDriversDL {
 		
 		deletedDriver.setIsDeleted('1');
 		deletedDriver.setModifiedBy("Admin");
-		deletedDriver.setModifiedDate(LocalDate.now());
+		deletedDriver.setModifiedDate(LocalDateTime.now());
 		
 		return this.repo.save(deletedDriver);
 				
@@ -77,9 +78,9 @@ public class ManageDriversDL {
 	//End of delete method//
 	
 	//This method is used to get the driver details and omits the deleted details// 
-	public List<DriverInfo> findByIsDeleted(char c){
+	public List<DriverInfo> findByIsDeleted(int i){
 		
-		return this.repo.findByIsDeleted(c);
+		return this.repo.findByIsDeleted(i);
 		
 	}
 	//End of the method//

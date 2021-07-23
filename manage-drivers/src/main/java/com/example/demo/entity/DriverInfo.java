@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import org.bson.types.ObjectId;
@@ -16,60 +17,37 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Document(collection = "managedrivers")
+@Document(collection = "DriverInfo")
 public class DriverInfo {
 
 	@Id
 	long driverId;
-	
-//	@Id
-//	ObjectId driverId;
-	
 	String driverName;
-	Long driverNumber;
+	String password;
+	long driverNumber;
 	String licenseNumber;
-	LocalDate expiryDate;
-	char isDeleted;
+	LocalDate licenseExpiryDate;
 	String createdBy;
+	LocalDateTime createdDate;
 	String modifiedBy;
-	LocalDate createdDate;
-	LocalDate modifiedDate;
+	LocalDateTime modifiedDate;
+	int isDeleted;
 	
-	
-	public DriverInfo(String driverName, Long driverNumber, String licenseNumber, LocalDate expiryDate, char isDeleted,
-			String createdBy, String modifiedBy, LocalDate createdDate, LocalDate modifiedDate) {
+	public DriverInfo(String driverName, String password, long driverNumber, String licenseNumber,
+			LocalDate licenseExpiryDate, String createdBy, LocalDateTime createdDate, String modifiedBy,
+			LocalDateTime modifiedDate, int isDeleted) {
 		super();
 		this.driverName = driverName;
+		this.password = password;
 		this.driverNumber = driverNumber;
 		this.licenseNumber = licenseNumber;
-		this.expiryDate = expiryDate;
-		this.isDeleted = isDeleted;
+		this.licenseExpiryDate = licenseExpiryDate;
 		this.createdBy = createdBy;
-		this.modifiedBy = modifiedBy;
 		this.createdDate = createdDate;
+		this.modifiedBy = modifiedBy;
 		this.modifiedDate = modifiedDate;
+		this.isDeleted = isDeleted;
 	}
-	
-//	public ObjectId getId() {
-//		return driverId;
-//	}
-//
-//	public void setId(ObjectId driverId) {
-//		this.driverId = driverId;
-//	}
-	
-//	public DriverInfo(Integer driverId, String driverName, Integer driverNumber, String licenseNumber,
-//			Date expiryDate) {
-//		super();
-//		this.driverId = driverId;
-//		this.driverName = driverName;
-//		this.driverNumber = driverNumber;
-//		this.licenseNumber = licenseNumber;
-//		this.expiryDate = expiryDate;
-//	}
-	
-	
-	
 	
 	
 
