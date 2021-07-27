@@ -2,9 +2,6 @@ package com.example.demo.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
-
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 

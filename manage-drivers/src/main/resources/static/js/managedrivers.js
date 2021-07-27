@@ -57,7 +57,7 @@ function driverInfoProcessResponse(){
         	divObj1.innerText = arr[i].driverNumber;
         	divObj2.innerText = arr[i].licenseNumber;
         	divObj3.innerText = formatDate(arr[i].licenseExpiryDate,1);
-        	divObj4.innerHTML ="<a href='#' title='Edit' class='actions-image'><img src='images/edit.svg' alt='edit-icon' onclick='editData(this)'/></a><a href='#' title='Delete' class='actions2-image'><img src='images/delete.svg' onclick='deleteData(this)' alt='delete-icon' data-toggle='modal' data-target='#manage-pop' /></a>";
+        	divObj4.innerHTML ="<a href='#' title='Edit' class='actions-image'><img src='images/edit.svg' alt='edit-icon' onclick='editDriverData(this)'/></a><a href='#' title='Delete' class='actions2-image'><img src='images/delete.svg' onclick='deleteDriverData(this)' alt='delete-icon' data-toggle='modal' data-target='#manage-pop' /></a>";
         	divObj5.innerText = arr[i].driverId;
         	
         	divObj5.style.display="none";
@@ -361,7 +361,7 @@ function saveDriverDetails(){
 	
 	else{
 		
-		xhrSaveDriverDetails.open("PUT","http://localhost:8080/manage/drivers/edit",true);
+		xhrSaveDriverDetails.open("PUT","http://localhost:8080/manage/drivers/edit/"+driverId,true);
 		
 		var data = {"driverId":driverId,"driverName":driverName,"driverNumber":driverNumber,
 				"licenseNumber":licenseNumber,"licenseExpiryDate":licenseExpiryDate};
@@ -433,7 +433,7 @@ var editId;
 var editRow;
 var driverId;
 
-function editData(row){
+function editDriverData(row){
 	
 	savingNewRecord = false;
 	
@@ -519,7 +519,7 @@ function deleteDriverInfoProcessResponse(){
 	}
 }
 
-function deleteData(row){
+function deleteDriverData(row){
 	
 	delId = row.closest("td").id;
 	

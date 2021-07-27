@@ -1,6 +1,5 @@
 package com.example.demo.dl;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -25,17 +24,21 @@ public class ManageDriversDL {
 	}
 	//End of the finding method//
 	
+	//This method is used to find the driver number from the database//
 	public Optional<DriverInfo> findByDriverNumber(Long number){
 		
 		return this.repo.findByDriverNumber(number);
 		
 	}
+	//End of finding the driver number method//
 	
+	//This method is used to find the license number from the database//
 	public Optional<DriverInfo> findByLicenseNumber(String license){
 		
 		return this.repo.findByLicenseNumber(license);
 		
 	}
+	//End of the find license number method//
 	
 	//This method returns the list of drivers//
 	public List<DriverInfo> findAllDrivers(){
@@ -43,8 +46,7 @@ public class ManageDriversDL {
 		return this.repo.findAll();
 		
 	}
-	
-	//End of find all drivers//
+	//End of getting the driver details method//
 	
 	//This method is used to save the driver details to the list//
 	public DriverInfo saveDriverDetails(DriverInfo driverDetails) {
@@ -68,7 +70,7 @@ public class ManageDriversDL {
 		Optional<DriverInfo> driver = this.repo.findById(driverId);
 		DriverInfo deletedDriver = driver.get();
 		
-		deletedDriver.setIsDeleted('1');
+		deletedDriver.setIsDeleted(1);
 		deletedDriver.setModifiedBy("Admin");
 		deletedDriver.setModifiedDate(LocalDateTime.now());
 		
@@ -84,29 +86,5 @@ public class ManageDriversDL {
 		
 	}
 	//End of the method//
-	
-//	public DriverInfo findByIsDelete(char c) {
-//		return this.repo.findByIsDelete(c);
-//	}
-
-	
-	
-//	public DriverInfo deleteDriverDetails(DriverInfo driverinfo, long driverId) {
-//		
-//		Optional<DriverInfo> driver = this.repo.findById(driverId);
-//		DriverInfo deletedDriver = driver.get();
-//		
-//		deletedDriver.setIsDeleted('1');
-//		deletedDriver.setModifiedBy("Admin");
-//		deletedDriver.setModifiedDate(LocalDate.now());
-//		
-//		return this.repo.save(deletedDriver);
-//				
-//	}
-	
-//	public long getRecordCount() {
-//		return this.repo.count();
-//	}
-	
 
 }

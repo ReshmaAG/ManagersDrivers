@@ -17,8 +17,4 @@ public interface ManageDriversRepository extends MongoRepository<DriverInfo, Lon
 
 	Optional<DriverInfo> findByLicenseNumber(String license);
 
-	//DriverInfo findByIsDelete(char c);
-	
-	
-
-}
+	}
